@@ -6,9 +6,45 @@
         xmlns:local="clr-namespace:ElementManagement.RoleWindows"
         mc:Ignorable="d"
         Title="Element" Height="450" Width="800">
-    <Grid>
-        <TabControl>
-            <TabItem Header="Каталог деталей" >
+    <Window.Resources>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Border>
+                            <Grid>
+                                <Grid>
+                                    <Border x:Name="border" 
+                                            CornerRadius="3,3,0,0"
+                                            Background="SlateGray"/>
+                                </Grid>
+                                <ContentPresenter ContentSource="Header"
+                                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="LightGray" />
+                            </Trigger>
+                            <Trigger Property="IsSelected"
+                                     Value="True">
+                                <Setter TargetName="border"
+                                        Property="Background"
+                                        Value="Orange" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="SlateGray" >
+        <TabControl Background="SlateGray" Foreground="Orange">
+            <TabItem Header="Каталог деталей" Foreground="White" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="607*">
@@ -27,17 +63,17 @@
                     </Grid>
                     <Grid>
                         <StackPanel Orientation="Horizontal">
-                            <Label>Артикул:</Label>
+                            <Label Foreground="White">Артикул:</Label>
                             <TextBox x:Name="tbArticulSearch" Width="200" TextChanged="tbArticulSearch_TextChanged"></TextBox>
-                            <Label>Название:</Label>
+                            <Label  Foreground="White">Название:</Label>
                             <TextBox x:Name="tbNameSearch" Width="200" TextChanged="tbNameSearch_TextChanged"></TextBox>
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Column="1" Grid.Row="1">
                         <StackPanel>
-                            <Label>Количество:</Label>
+                            <Label  Foreground="White">Количество:</Label>
                             <TextBox PreviewTextInput="NumericTextBox_PreviewTextInput" x:Name="tbCountToRequest"></TextBox>
-                            <Button Click="btRequestCount">Запросить</Button>
+                            <Button Background="Orange" Click="btRequestCount">Запросить</Button>
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Column="1">
@@ -45,7 +81,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Запрошенные детали" >
+            <TabItem Header="Запрошенные детали"  Foreground="White">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="586*"></ColumnDefinition>
@@ -70,13 +106,13 @@
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel>
-                            <Button x:Name="btAcceptUsage" Click="btAcceptUsage_Click">Утвердить использование</Button>
+                            <Button Background="Orange" Foreground="White"  x:Name="btAcceptUsage" Click="btAcceptUsage_Click">Утвердить использование</Button>
                             <Button x:Name="btCancelUsage" Click="btCancelUsage_Click">Отменить запрос</Button>
                         </StackPanel>
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Детали для устройства">
+            <TabItem Header="Детали для устройства"  Foreground="White">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="18*"></ColumnDefinition>
@@ -99,7 +135,7 @@
                         </Grid>
                         <Grid Grid.Row="2">
                             <StackPanel>
-                                <Button Click="btNotifyDeviceProduction_Click">Утвердить изготовление устройства</Button>
+                                <Button Foreground="White" Background="Orange" Click="btNotifyDeviceProduction_Click">Утвердить изготовление устройства</Button>
                                 <Button Content="Посмотреть совместимые детали" Click="btChengeShownDetails_Click"></Button>
                             </StackPanel>
                         </Grid>
