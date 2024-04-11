@@ -1,0 +1,84 @@
+﻿<Window x:Class="ElementManagement.RoleWindows.StorageWorkerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElementManagement"
+        mc:Ignorable="d"
+        Title="Element" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Инвентарь">
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="32*"></RowDefinition>
+                        <RowDefinition Height="359*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="307*"></ColumnDefinition>
+                            <ColumnDefinition Width="86*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <DataGrid Loaded="dtgInventory_Loaded" x:Name="dtgInventory" CanUserAddRows="False">
+                            </DataGrid>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <StackPanel>
+                                <Label>Количество:</Label>
+                                <TextBox PreviewTextInput="NumericTextBox_PreviewTextInput"  x:Name="tbCount"></TextBox>
+                                <Button x:Name="btAddInventory" Click="btAddInventory_Click">Добавить</Button>
+                                <Button x:Name="btRemoveInventory" Click="btRemoveInventory_Click">Изъять</Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>Название:</Label>
+                            <TextBox Width="200" TextChanged="TextBox_TextChanged" x:Name="tbName"></TextBox>
+                            <Label>Артикул:</Label>
+                            <TextBox Width="200" x:Name="tbArticul" TextChanged="tbArticul_TextChanged"></TextBox>
+                            <Label>Тип:</Label>
+                            <ComboBox Name="cbType" Width="200" SelectionChanged="cbType_SelectionChanged"></ComboBox>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Запросы">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="581*"></ColumnDefinition>
+                        <ColumnDefinition Width="205*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <DataGrid x:Name="dtgRequested" Loaded="dtgRequested_Loaded"></DataGrid>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackPanel>
+                            <Button Click="Button_Click_2">Принять</Button>
+                            <Button Click="Button_Click_1">Отклонить</Button>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+                
+            </TabItem>
+            <TabItem Header="Отмены">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="581*"></ColumnDefinition>
+                        <ColumnDefinition Width="205*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <DataGrid x:Name="dtgCanceled" Loaded="dtgCanceled_Loaded"></DataGrid>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackPanel>
+                            <Button Click="Button_Click">Утвердить</Button>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

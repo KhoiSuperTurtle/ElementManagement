@@ -1,0 +1,111 @@
+﻿<Window x:Class="ElementManagement.RoleWindows.IngineerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ElementManagement.RoleWindows"
+        mc:Ignorable="d"
+        Title="Element" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Каталог деталей" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="607*">
+                        </ColumnDefinition>
+                        <ColumnDefinition Width="168*"></ColumnDefinition>
+                        <ColumnDefinition Width="11*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40*"></RowDefinition>
+                        <RowDefinition Height="351*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Column="0" Grid.Row="1">
+                        <DataGrid CanUserAddRows="false" x:Name="dtgDetailsToRequest" Loaded="dtgDetailsToRequest_Loaded">
+
+                        </DataGrid>
+                    </Grid>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>Артикул:</Label>
+                            <TextBox x:Name="tbArticulSearch" Width="200" TextChanged="tbArticulSearch_TextChanged"></TextBox>
+                            <Label>Название:</Label>
+                            <TextBox x:Name="tbNameSearch" Width="200" TextChanged="tbNameSearch_TextChanged"></TextBox>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1" Grid.Row="1">
+                        <StackPanel>
+                            <Label>Количество:</Label>
+                            <TextBox PreviewTextInput="NumericTextBox_PreviewTextInput" x:Name="tbCountToRequest"></TextBox>
+                            <Button Click="btRequestCount">Запросить</Button>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <Button Click="btToRequestUploadClick">Обновить таблицу</Button>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Запрошенные детали" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="586*"></ColumnDefinition>
+                        <ColumnDefinition Width="189*"></ColumnDefinition>
+                        <ColumnDefinition Width="11*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="13*"/>
+                            <ColumnDefinition Width="280*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1" Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="79*"/>
+                                <ColumnDefinition Width="61*"/>
+                            </Grid.ColumnDefinitions>
+                            <DataGrid CanUserAddRows="false"  x:Name="dtgMyRequested" Loaded="dtgMyRequested_Loaded" Grid.ColumnSpan="2">
+
+                            </DataGrid>
+                        </Grid>
+
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackPanel>
+                            <Button x:Name="btAcceptUsage" Click="btAcceptUsage_Click">Утвердить использование</Button>
+                            <Button x:Name="btCancelUsage" Click="btCancelUsage_Click">Отменить запрос</Button>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Детали для устройства">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="18*"></ColumnDefinition>
+                        <ColumnDefinition Width="352*"></ColumnDefinition>
+                        <ColumnDefinition Width="16*"></ColumnDefinition>
+                        <ColumnDefinition Width="387*"></ColumnDefinition>
+                        <ColumnDefinition Width="13*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="1">
+                        <DataGrid CanUserAddRows="false"  x:Name="dtgDeviceLists" Loaded="dtgDeviceLists_Loaded" SelectionChanged="dtgDeviceLists_SelectionChanged"></DataGrid>
+                    </Grid>
+                    <Grid Grid.Column="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="264*"></RowDefinition>
+                            <RowDefinition Height="23*"></RowDefinition>
+                            <RowDefinition Height="104*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <DataGrid x:Name="dtgDetailsOfDevice" CanUserAddRows="false" ></DataGrid>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <StackPanel>
+                                <Button Click="btNotifyDeviceProduction_Click">Утвердить изготовление устройства</Button>
+                                <Button Content="Посмотреть совместимые детали" Click="btChengeShownDetails_Click"></Button>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
